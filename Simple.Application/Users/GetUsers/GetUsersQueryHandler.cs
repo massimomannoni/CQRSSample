@@ -18,7 +18,7 @@ namespace Simple.Application.Users.GetUsers
         {
             var connection = _sqlConnectionFactory.GetOpenConnection();
 
-            const string pqTradeSql = "SELECT id, name FROM public.cqrs_user_get()";
+            const string pqTradeSql = "SELECT id, first_name, last_name, email FROM public.cqrs_user_get()";
 
             var users = await connection.QueryAsync<UserDetailsDto>(pqTradeSql);
 

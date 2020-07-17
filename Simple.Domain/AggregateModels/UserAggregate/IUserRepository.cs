@@ -9,8 +9,6 @@ namespace Simple.Domain.Users
     {
         Task Create(User user);
 
-        Task Change(Guid id, string name);
-
         Task Delete(Guid id);
     }
 }

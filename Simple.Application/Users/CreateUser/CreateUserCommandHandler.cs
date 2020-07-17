@@ -18,7 +18,7 @@ namespace Simple.Application.Users.CreateUser
         }
         public async Task<UserDto> Handle(CreateUserCommand request, CancellationToken cancellationToken)
         {
-            var user = User.Create(request.Name);
+            var user = User.Create(request.FirstName, request.LastName, request.Email);
 
             await _userRepository.Create(user);
 

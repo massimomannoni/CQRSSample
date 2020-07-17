@@ -6,11 +6,18 @@ namespace Simple.Application.Users.CreateUser
 {
     public class CreateUserCommand : CommandBase<UserDto>
     {
-        public string Name { get; }
 
-        public CreateUserCommand(string name)
+        public string FirstName { get; set; }
+
+        public string LastName { get; set; }
+
+        public string Email { get; set; }
+
+        public CreateUserCommand(string first_name, string last_name, string email)
         {
-            Name = name;
+            FirstName = first_name;
+            LastName = last_name;
+            Email = email;
         }
     }
 }

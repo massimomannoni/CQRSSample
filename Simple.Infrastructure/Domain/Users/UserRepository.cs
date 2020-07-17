@@ -27,10 +27,12 @@ namespace Simple.Infrastructure.Domain.Users
                 try
                 {
                     // store product
-                    using (var cmd = new NpgsqlCommand("INSERT INTO public.web_user(id, name) VALUES(@id, @name)", (NpgsqlConnection)conn))
+                    using (var cmd = new NpgsqlCommand("INSERT INTO public.web_user(id, first_name, last_name, email) VALUES(@id, @first_name, @last_name, @email)", (NpgsqlConnection)conn))
                     {
                         cmd.Parameters.Add(new NpgsqlParameter("@id", NpgsqlDbType.Uuid) { Value = user.Id.Value });
-                        cmd.Parameters.Add(new NpgsqlParameter("@name", NpgsqlDbType.Varchar) { Value = user.Name });
+                        cmd.Parameters.Add(new NpgsqlParameter("@first_name", NpgsqlDbType.Varchar) { Value = user.FirstName });
+                        cmd.Parameters.Add(new NpgsqlParameter("@last_name", NpgsqlDbType.Varchar) { Value = user.LastName });
+                        cmd.Parameters.Add(new NpgsqlParameter("@email", NpgsqlDbType.Varchar) { Value = user.Email });
 
                         await cmd.ExecuteNonQueryAsync();
                     }
@@ -44,11 +46,6 @@ namespace Simple.Infrastructure.Domain.Users
                     throw ex;
                 }
             }
-        }
-
-        public Task Change(Guid id, string name)
-        {
-            throw new NotImplementedException();
         }
 
         public Task Delete(Guid id)

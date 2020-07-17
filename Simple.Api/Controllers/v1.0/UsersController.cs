@@ -55,7 +55,7 @@ namespace Simple.Api.Controllers
 
             try
             {
-                UserDto user = await _mediator.Send(new CreateUserCommand(request.Name));
+                UserDto user = await _mediator.Send(new CreateUserCommand(request.first_name, request.last_name, request.email));
 
                 return Created(string.Empty, user);
             }
